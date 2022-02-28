@@ -6,13 +6,13 @@
 
 // Hello world function
 void hello_world(){
-    printf("hello world");
+    printf("hello world\n");
 }
 
 
 // Goodbye function
 void goodbye(){
-    printf("goodbye");
+    printf("goodbye\n");
 }
 
 int main(){
