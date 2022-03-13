@@ -39,15 +39,19 @@ int main(){
    for (int i = 0; i < 5; i++)
     {
         pthread_create(&thread_id[i], NULL, &bellcurve, &students[i]);
+        pthread_join(thread_id[i], NULL);
+
     }
 
     //pthread_join loop so threads wait for each other to finish first, otherwise output is a mess
 
+/*
     for (int i = 0; i < 5; i++)
     {
-        pthread_join(thread_id[i], 0);
+        pthread_join(thread_id[i], NULL);
     }
 
+*/
     pthread_exit(NULL);
 
     return 0;
