@@ -7,21 +7,24 @@
 
 #include "q3.h"
 
-void bellcurve(struct Student *student){
+// bellcurve function
+void *bellcurve(void *args){
 
-    (*student).grade *= 1.5;
+    struct Student *s = args;
 
-    printf("\nStudent name: %s", (*student).name);
-    printf("\nStudent ID: %i", (*student).student_id);
-    printf("\nStudent grade: %d\n", (*student).grade);
+    // bellcurve grade multiplier
+    (*s).grade *= 1.5;
 
+    printf("\nStudent name: %s", (*s).name);
+    printf("\nStudent ID: %i", (*s).student_id);
+    printf("\nStudent grade: %f\n", (float)(*s).grade);
+
+    return NULL;
 }
 
 int main(){
     struct Student students[5];
-
-    //TODO: initialize the threads in a for loop 
-    //pthread_t thread_id[5];
+    pthread_t thread_id[5];
 
     for(int i = 0; i<5; i++){
         printf("\nEnter student's name: ");
@@ -32,13 +35,14 @@ int main(){
         scanf("%d", &students[i].grade);
     }
 
+    // create threads
    for (int i = 0; i < 5; i++)
     {
-        pthread_t thread_id[i];
-        pthread_create(&thread_id[i], NULL, (void *) bellcurve, &students[i]);
+        pthread_create(&thread_id[i], NULL, &bellcurve, &students[i]);
     }
 
-    //TODO: add pthread_join loop here
+    //pthread_join loop so threads wait for each other to finish first, otherwise output is a mess
+
     for (int i = 0; i < 5; i++)
     {
         pthread_join(thread_id[i], 0);

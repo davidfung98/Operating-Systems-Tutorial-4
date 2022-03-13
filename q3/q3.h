@@ -8,5 +8,5 @@
 struct Student {
     char name[256];
     int student_id;
-    double grade;
+    int grade;
 };
