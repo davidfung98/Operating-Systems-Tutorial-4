@@ -21,7 +21,7 @@ int main(){
     struct Student students[5];
 
     //TODO: initialize the threads in a for loop 
-    pthread_t thread_id[5];
+    //pthread_t thread_id[5];
 
     for(int i = 0; i<5; i++){
         printf("\nEnter student's name: ");
@@ -34,11 +34,15 @@ int main(){
 
    for (int i = 0; i < 5; i++)
     {
+        pthread_t thread_id[i];
         pthread_create(&thread_id[i], NULL, (void *) bellcurve, &students[i]);
     }
 
     //TODO: add pthread_join loop here
-    for ()
+    for (int i = 0; i < 5; i++)
+    {
+        pthread_join(thread_id[i], 0);
+    }
 
     pthread_exit(NULL);
 
